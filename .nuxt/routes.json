@@ -1,0 +1,16 @@
+[
+  {
+    "name": "home-id",
+    "path": "/home/:id?",
+    "component": "C:\\\\Users\\\\Stoneacre\\\\Desktop\\\\Learning\\\\Nuxt\\\\pages\\\\home\\\\_id.vue",
+    "chunkName": "pages/home/_id",
+    "_name": "_cc1ba5e6"
+  },
+  {
+    "name": "index",
+    "path": "/",
+    "component": "C:\\\\Users\\\\Stoneacre\\\\Desktop\\\\Learning\\\\Nuxt\\\\pages\\\\index.vue",
+    "chunkName": "pages/index",
+    "_name": "_0603aab8"
+  }
+]
