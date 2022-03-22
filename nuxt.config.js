@@ -11,6 +11,9 @@ export default {
         meta: [{
             charset: "utf-8"
         }]
-
-    }
+    },
+    router: {
+        prefetchLinks: false,
+    },
+    plugins: ['~/plugins/maps.client', '~/plugins/dataApi']
 }
