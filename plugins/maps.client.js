@@ -29,15 +29,16 @@ export default function(context, inject) {
         waiting = []
     }
 
-    function makeAutoComplete(input) {
+    function makeAutoComplete(input, types = ['(cities)']) {
         if (!isLoaded) {
             waiting.push({ fn: makeAutoComplete, arguments })
             return
         }
-        const autoComplete = new google.maps.places.Autocomplete(input, { types: [('(cities)')] })
-        autoComplete.addListener('place_change', () => {
+
+        const autoComplete = new window.google.maps.places.Autocomplete(input, { types })
+        autoComplete.addListener('place_changed', () => {
             const place = autoComplete.getPlace()
-            input.dispachEvent(new CustomEvent('changed', { detail: place }))
+            input.dispatchEvent(new CustomEvent('changed', { detail: place }))
         })
     }
     // display the map

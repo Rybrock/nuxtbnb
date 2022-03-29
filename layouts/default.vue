@@ -19,10 +19,10 @@ export default {
              if(!place.geometry) return;
 
              this.$router.push({
-                 name: 'search',
+                 name: "search",
                  query: {
                      lat: place.geometry.location.lat(),
-                     lng: place.gemoetry.location.lng(),
+                     lng: place.geometry.location.lng(),
                      label: this.$refs.citySearch.value,
                  },
              });
