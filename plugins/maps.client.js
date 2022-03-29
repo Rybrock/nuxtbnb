@@ -1,50 +1,64 @@
 export default function(context, inject) {
-    let mapLoaded = false
-    let mapWaiting = null
+    let isLoaded = false
+    let waiting = []
 
 
     addScript()
     inject('maps', {
-        showMap
+        showMap,
+        makeAutoComplete,
     })
 
 
 
     function addScript() {
         const script = document.createElement('script')
-        script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyD-NyeaHtMsLny4e4k9frQQbmMRmduQccE&libraries=places&callback=initMap"
+        script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyD-NyeaHtMsLny4e4k9frQQbmMRmduQccE&libraries=places&callback=initGoogleMaps"
         script.async = true
-        window.initMap = initMap
+        window.initGoogleMaps = initGoogleMaps
         document.head.appendChild(script)
     }
 
-    function initMap() {
-        mapLoaded = true
-        if (mapWaiting) {
-            const { canvas, lat, lng } = mapWaiting
-            renderMap(canvas, lat, lng)
-            mapWaiting = null
+    function initGoogleMaps() {
+        isLoaded = true
+        waiting.forEach((item) => {
+            if (typeof item.fn === 'function') {
+                item.fn(...item.arguments)
+            }
+        })
+        waiting = []
+    }
+
+    function makeAutoComplete(input) {
+        if (!isLoaded) {
+            waiting.push({ fn: makeAutoComplete, arguments })
+            return
         }
+        const autoComplete = new google.maps.places.Autocomplete(input, { types: [('(cities)')] })
+        autoComplete.addListener('place_change', () => {
+            const place = autoComplete.getPlace()
+            input.dispachEvent(new CustomEvent('changed', { detail: place }))
+        })
     }
-
+    // display the map
     function showMap(canvas, lat, lng) {
-        if (mapLoaded) renderMap(canvas, lat, lng)
-        else mapWaiting = { canvas, lat, lng }
-    }
-
-    function renderMap(canvas, lat, lng) {
+        if (!isLoaded) {
+            waiting.push({
+                fn: showMap,
+                arguments,
+            })
+            return
+        }
         console.log('mounted')
         const mapOptions = {
             zoom: 18,
             center: new window.google.maps.LatLng(lat, lng),
             disableDefaultUI: true,
             zoomControl: true,
-        };
+        }
         const map = new window.google.maps.Map(canvas, mapOptions);
         const position = new window.google.maps.LatLng(lat, lng);
-        const marker = new window.google.maps.Marker({
-            position,
-        });
+        const marker = new window.google.maps.Marker({ position });
         marker.setMap(map);
     }
 }

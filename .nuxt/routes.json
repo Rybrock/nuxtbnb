@@ -1,14 +1,23 @@
 [
   {
+    "name": "search",
+    "path": "/search",
+    "component": "C:\\\\Users\\\\Stoneacre\\\\Documents\\\\GitHub\\\\nuxtbnb\\\\pages\\\\search.vue",
+    "chunkName": "pages/search",
+    "_name": "_67b85266"
+  },
+  {
     "name": "home-id",
     "path": "/home/:id?",
-    "component": "C:\\\\Users\\\\Stoneacre\\\\Documents\\\\GitHub\\\\Projects\\\\repos\\\\nuxtbnb\\\\pages\\\\home\\\\_id.vue",
-    "chunkName": "pages/home/_id"
+    "component": "C:\\\\Users\\\\Stoneacre\\\\Documents\\\\GitHub\\\\nuxtbnb\\\\pages\\\\home\\\\_id.vue",
+    "chunkName": "pages/home/_id",
+    "_name": "_89464fb4"
   },
   {
     "name": "index",
     "path": "/",
-    "component": "C:\\\\Users\\\\Stoneacre\\\\Documents\\\\GitHub\\\\Projects\\\\repos\\\\nuxtbnb\\\\pages\\\\index.vue",
-    "chunkName": "pages/index"
+    "component": "C:\\\\Users\\\\Stoneacre\\\\Documents\\\\GitHub\\\\nuxtbnb\\\\pages\\\\index.vue",
+    "chunkName": "pages/index",
+    "_name": "_64244a3d"
   }
 ]
